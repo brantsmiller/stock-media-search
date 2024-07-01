@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Video Search</title>
+</head>
+<body>
+    <h1>Stock Video Search</h1>
+    <input type="text" id="searchTerm" placeholder="Enter search term here..." />
+    <button onclick="search('adobe')">Search Adobe Stock</button>
+    <button onclick="search('motionArray')">Search Motion Array</button>
+    <button onclick="search('wikimedia')">Search Wikimedia Commons</button>
+
+    <script>
+        function search(source) {
+            var searchTerm = document.getElementById('searchTerm').value;
+            var url = "";
+            switch(source) {
+                case 'adobe':
+                    url = "https://stock.adobe.com/search?k=" + encodeURIComponent(searchTerm);
+                    break;
+                case 'motionArray':
+                    url = "https://motionarray.com/browse/stock-video/?q=" + encodeURIComponent(searchTerm);
+                    break;
+                case 'wikimedia':
+                    url = "https://commons.wikimedia.org/wiki/Special:Search?search=" + encodeURIComponent(searchTerm);
+                    break;
+            }
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
