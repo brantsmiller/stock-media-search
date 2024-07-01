@@ -3,39 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Multiple Websites</title>
+    <title>Stock Video Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Search Multiple Websites</h1>
-    <input type="text" id="query" placeholder="Enter search term">
-    <button id="adobeStockButton">Search Adobe Stock</button>
-    <button id="motionArrayButton">Search Motion Array</button>
-    <button id="wikimediaButton">Search Wikimedia Commons</button>
+    <h1>Stock Video Search</h1>
+    <input type="text" id="searchTerm" placeholder="Enter search term">
+    <br>
+    <button onclick="search('adobe')">Search Adobe Stock</button>
+    <button onclick="search('motionArray')">Search Motion Array</button>
+    <button onclick="search('wikimedia')">Search Wikimedia Commons</button>
 
     <script>
-        document.getElementById('adobeStockButton').addEventListener('click', function() {
-            var query = document.getElementById('query').value;
-            if (query) {
-                var url = `https://stock.adobe.com/search?k=${query}`;
-                window.open(url, '_blank');
-            }
-        });
+        function search(site) {
+            var searchTerm = document.getElementById('searchTerm').value;
+            var url = '';
 
-        document.getElementById('motionArrayButton').addEventListener('click', function() {
-            var query = document.getElementById('query').value;
-            if (query) {
-                var url = `https://motionarray.com/browse/stock-video/?q=${query}`;
-                window.open(url, '_blank');
+            switch (site) {
+                case 'adobe':
+                    url = 'https://stock.adobe.com/search?k=' + encodeURIComponent(searchTerm);
+                    break;
+                case 'motionArray':
+                    url = 'https://motionarray.com/browse/stock-video/?q=' + encodeURIComponent(searchTerm);
+                    break;
+                case 'wikimedia':
+                    url = 'https://commons.wikimedia.org/wiki/Special:Search?search=' + encodeURIComponent(searchTerm);
+                    break;
             }
-        });
 
-        document.getElementById('wikimediaButton').addEventListener('click', function() {
-            var query = document.getElementById('query').value;
-            if (query) {
-                var url = `https://commons.wikimedia.org/wiki/Special:Search?search=${query}`;
-                window.open(url, '_blank');
-            }
-        });
+            window.open(url, '_blank');
+        }
     </script>
 </body>
 </html>
