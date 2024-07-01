@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Multiple Tabs</title>
+    <title>Search Multiple Websites</title>
 </head>
 <body>
-    <h1>Open Multiple Tabs</h1>
-    <button id="openTabs">Open Tabs</button>
+    <h1>Search Multiple Websites</h1>
+    <form id="searchForm">
+        <input type="text" id="query" placeholder="Enter search term">
+        <button type="submit">Search</button>
+    </form>
 
     <script>
-        document.getElementById('openTabs').addEventListener('click', function() {
-            var urls = [
-                'https://motionarray.com/browse/stock-video/',
-                'https://motionarray.com/browse/stock-video/',
-                'https://commons.wikimedia.org/wiki/Main_Page'
-            ];
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var query = document.getElementById('query').value;
+            if (query) {
+                var urls = [
+                    `https://motionarray.com/browse/stock-video/?q=${query}`,
+                    `https://commons.wikimedia.org/wiki/Special:Search?search=${query}`
+                ];
 
-            for (var i = 0; i < urls.length; i++) {
-                window.open(urls[i], '_blank');
+                for (var i = 0; i < urls.length; i++) {
+                    window.open(urls[i], '_blank');
+                }
             }
         });
     </script>
