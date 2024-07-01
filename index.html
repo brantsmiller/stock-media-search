@@ -22,11 +22,14 @@
                     `https://motionarray.com/browse/stock-video/?q=${query}`,
                     `https://commons.wikimedia.org/wiki/Special:Search?search=${query}`
                 ];
-                urls.forEach(function(url) {
-                    window.open(url, '_blank');
+                urls.forEach(function(url, index) {
+                    setTimeout(function() {
+                        window.open(url, '_blank');
+                    }, index * 1000); // Delay each tab opening by 1 second
                 });
             }
         });
     </script>
 </body>
 </html>
+
